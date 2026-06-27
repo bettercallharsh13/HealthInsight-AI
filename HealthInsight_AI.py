@@ -171,19 +171,7 @@ def get_positive_int(prompt: str, max_value: Optional[int] = None) -> int:
             return value
         except ValueError:
             print("Invalid input. Please enter a whole number.")
-"""
-def validate_user_data(name, age, weight, height, sleep, water):
-    if age < 0 or age > 120:
-        raise ValueError("Invalid age")
-    if weight < 20 or weight >300:
-        raise ValueError("Invalid weight")
-    if height < 50 or height > 250:
-        raise ValueError("Invalid height")
-    if sleep < 0 or sleep > 24:
-        raise ValueError("Invalid sleeping hour")
-    if water < 0 or water > 15:
-        raise ValueError("Invalid water intake")
-"""
+
 
 
 def main():
