@@ -447,13 +447,17 @@ def main():
         # Trend Analysis
         if len(history) > 1:
             st.markdown("### 📊 Trend Analysis")
-            latest_user = User(
-                history[-1]['name'],
-                30,  # Default age since we don't store it
-                history[-1]['bmi'],
-                history[-1]['bmi'],
-                history[-1]['bmi'],
-                history[-1]['bmi']
+                     # Use the latest record to create a User object
+            latest_record = history[-1]
+            
+            # Create user from stored data (or use defaults if missing)
+            user_data = User(
+                name=latest_record.get('name', 'User'),
+                age=latest_record.get('age', 30),
+                height=latest_record.get('height', 175.0),
+                weight=latest_record.get('weight', 70.0),
+                sleep=latest_record.get('sleep', 8.0),
+                water=latest_record.get('water', 2.0)
             )
             analyzer_latest = HealthAnalyzer(latest_user)
             trend = analyzer_latest.get_trend_analysis(history)
