@@ -340,6 +340,11 @@ def main():
             report = {
                 "date": str(datetime.now()),
                 "name": user.name,
+                "age": user.age,
+                "height": user.height,
+                "weight": user.weight,
+                "sleep": user.sleep,
+                "water": user.water,
                 "bmi": round(analyzer.bmi(), 2),
                 "status": analyzer.bmi_status(),
                 "score": analyzer.health_score()
@@ -431,18 +436,10 @@ def main():
         display_df = display_df[['date', 'name', 'bmi', 'status', 'score']]
         display_df.columns = ['Date', 'Name', 'BMI', 'Status', 'Score']
         
-        # Color coding for status
-        def color_status(val):
-            colors = {
-                'Underweight': 'background-color: #ADD8E6',
-                'Normal weight': 'background-color: #90EE90',
-                'Overweight': 'background-color: #FFD700',
-                'Obese': 'background-color: #FF6B6B'
-            }
-            return colors.get(val, '')
         
-        st.dataframe(display_df.style.applymap(color_status, subset=['Status']), 
-                    use_container_width=True)
+        
+        
+        st.dataframe(display_df, use_container_width=True)
         
         # Trend Analysis
         if len(history) > 1:
@@ -459,7 +456,7 @@ def main():
                 sleep=latest_record.get('sleep', 8.0),
                 water=latest_record.get('water', 2.0)
             )
-            analyzer_latest = HealthAnalyzer(latest_user)
+            analyzer_latest = HealthAnalyzer(user_data)
             trend = analyzer_latest.get_trend_analysis(history)
             
             if trend.get('records_analyzed', 0) > 1:
