@@ -468,8 +468,9 @@ def main():
                     st.metric("Current Score", trend.get('current_score', 0))
                 with col3:
                     change = trend.get('change', 0)
-                    st.metric("Change", f"{change:+d} points", 
-                             delta_color="normal" if change >= 0 else "inverse")
+                    change_str = f"{change:+.1f}" if isinstance(change, float) else f"{change:+d}"
+                    st.metric("Change", f"{change_str} points", 
+                             
         
         # Export options
         st.markdown("---")
